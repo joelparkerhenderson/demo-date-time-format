@@ -1,17 +1,16 @@
-# Date Time ISO nano format
+# Demo Date Time UTC ISO format
 
-This page shows how to print a date and time:
+This demo shows:
 
-  * Using the UTC time zone
-  * Using the ISO 8601 format
-  * Using seconds, or microseconds, or milliseconds, or nanoseconds
-  * Using the format "YYYY-MM-DDT00:00:00.000000000Z"
+  * How to print a date-time string.
+  * Using the UTC time zone, also known as GMT and Zulu time.
+  * Using the ISO 8601 format, such as "YYYY-MM-DDT00:00:00.000000000Z"
 
-Code conventions:
+Coding conventions in this repo.
 
-  * `F` is the format string, typically a constant.
-  * `t` is the time, typically a variable.
-  * `s` is the string, which we print to standard output.
+  * `t` is the time.
+  * `F` is the format string.
+  * `s` is the output string.
   
 Examples:
 
@@ -59,17 +58,17 @@ C with ANSI C:
     
     int main()
     {
-	time_t timer;
-	char s[30];
-	struct tm* tm_info;
+        time_t timer;
+        char s[30];
+        struct tm* tm_info;
 
-	time(&timer);
-	tm_info = localtime(&timer);
+        time(&timer);
+        tm_info = localtime(&timer);
 
-	strftime(s, 30, "%Y-%m-%d %H:%M:%S.000000000Z", tm_info);
-	puts(s);
+        strftime(s, 30, "%Y-%m-%d %H:%M:%S.000000000Z", tm_info);
+        puts(s);
 
-	return 0;
+        return 0;
     }
 
 C with struct timeval:
@@ -78,8 +77,8 @@ C with struct timeval:
     #include <sys/time.h>
     int main(void)
     {
-      struct timeval t;
-	gettimeofday(&t,NULL);
+        struct timeval t;
+        gettimeofday(&t,NULL);
         printf("%ld.%09ld\n", (long int)t.tv_sec, (long int)t.tv_usec);
         return 0;
     }
@@ -92,13 +91,13 @@ C++:
     #include <iostream>
 
     int main() {
-	time_t t;
-	time(&t);
-	char buf[sizeof "2011-10-08T07:07:09Z"];
-	strftime(buf, sizeof buf, "%Y-%m-%dT%H:%M:%SZ", gmtime(&t));
-	// Prefer this line if your compiler supports %F or %T formats:
-	//strftime(buf, sizeof buf, "%FT%TZ", gmtime(&nt));
-	std::cout << buf << "\n";
+        time_t t;
+        time(&t);
+        char buf[sizeof "2011-10-08T07:07:09Z"];
+        strftime(buf, sizeof buf, "%Y-%m-%dT%H:%M:%SZ", gmtime(&t));
+        // Prefer this line if your compiler supports %F or %T formats:
+        //strftime(buf, sizeof buf, "%FT%TZ", gmtime(&nt));
+        std::cout << buf << "\n";
     }
     
 C++ with Boost:
@@ -107,9 +106,9 @@ C++ with Boost:
     #include <boost/date_time/posix_time/posix_time.hpp>
 
     int main() {
-	using namespace boost::posix_time;
-	ptime t = microsec_clock::universal_time();
-	std::cout << to_iso_extended_string(t) << "Z\n";
+        using namespace boost::posix_time;
+        ptime t = microsec_clock::universal_time();
+        std::cout << to_iso_extended_string(t) << "Z\n";
     }
 
 
@@ -138,10 +137,10 @@ Go:
     import "time"
 
     func main() {
-	const f = "2006-01-02T15:04:05.999999999Z"
-	t := time.Now().UTC()
-	s := t.Format(format)
-	fmt.Println(s)
+        const f = "2006-01-02T15:04:05.999999999Z"
+        t := time.Now().UTC()
+        s := t.Format(format)
+        fmt.Println(s)
     }
 
 
@@ -163,12 +162,12 @@ Java with seconds:
 
     public class DateTimeFormat {
       public static void main(String[] args) {
-	 String iso = "yyyy-MM-dd'T'HH:mm:ss.000000000'Z'";
-	 TimeZone tz = TimeZone.getTimeZone("UTC");
-	 DateFormat df = new SimpleDateFormat(iso);
-	 df.setTimeZone(tz);
-	 String s = df.format(new Date());
-	 System.out.println(s);
+         String iso = "yyyy-MM-dd'T'HH:mm:ss.000000000'Z'";
+         TimeZone tz = TimeZone.getTimeZone("UTC");
+         DateFormat df = new SimpleDateFormat(iso);
+         df.setTimeZone(tz);
+         String s = df.format(new Date());
+         System.out.println(s);
       }
     }
 
