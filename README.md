@@ -24,10 +24,10 @@ Preferences:
   * We prefer using fractional seconds over just seconds because of precision.
   * We prefer `+00.00` over `Z` because our logs contain many time zones.
   
-Coding conventions in this repo.
+Coding conventions in this repo:
 
   * `t` is the time.
-  * `F` is the format string.
+  * `f` is the format string.
   * `s` is the output string.
   
 Examples:
@@ -132,8 +132,9 @@ C++ with Boost:
 Elixir with the Timex library:
 
     use Timex
-    t=Timex.now("UTC") 
-    Timex.format(t, "{ISO:Extended}")
+    f = "{ISO:Extended}"
+    t = Timex.now 
+    Timex.format(t, f)
 
 
 <h2><a name="go">Go</a></h2>
