@@ -13,7 +13,7 @@ Example:
 Meaning:
 
   * `YYYY-MM-DD` means the year, month, and day.
-  * `T` is the ISO standard separator character between the date and tiem.
+  * `T` is the ISO standard separator character between the date and time.
   * `HH:MM:SS.sss` means the hour, minute, second, and millisecond.
   * `+00:00` means zero offset from UTC, in other words, actual UTC time.
 
