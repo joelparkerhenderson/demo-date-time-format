@@ -1,4 +1,4 @@
-# Demo Date Time UTC ISO format
+# Demo date time format using UTC ISO
 
 This demo shows:
 
